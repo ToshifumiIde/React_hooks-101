@@ -6,12 +6,14 @@ export const Event = (props) => {
   //   name: "",
   //   price: 1000,
   // };
-  const [name, setName] = useState(props.name);
-  const [price, setPrice] = useState(props.price);
-
+  const [state, setState] = useState(props);
+  // const [name, setName] = useState(props.name);
+  // const [price, setPrice] = useState(props.price);
+  const { name, price } = state;
   const reset = () => {
-    setPrice(props.price);
-    setName(props.name);
+    setState(props);
+    // setPrice(props.price);
+    // setName(props.name);
   };
 
   return (
@@ -21,19 +23,19 @@ export const Event = (props) => {
       </p>
       <button
         onClick={() => {
-          setPrice(price + 1);
+          setState({ ...state, price: price + 1 });
         }}
       >
         +1
       </button>
       <button
         onClick={() => {
-          setPrice(price - 1);
+          setState({ ...state, price: price - 1 });
         }}
       >
         -1
       </button>
-      <button onClick={() => reset}>Reset</button>
+      <button onClick={reset}>Reset</button>
       {/* <button onClick={() => {
         reset();
       }}>Reset</button> */}
@@ -41,7 +43,7 @@ export const Event = (props) => {
         type="text"
         value={name}
         onChange={(e) => {
-          setName(e.target.value);
+          setState({ ...state, name: e.target.value });
         }}
       />
     </>
