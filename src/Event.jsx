@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { App } from "./App";
 
 export const Event = (props) => {
@@ -10,16 +10,38 @@ export const Event = (props) => {
   // const [name, setName] = useState(props.name);
   // const [price, setPrice] = useState(props.price);
   const { name, price } = state;
+  const renderPeriod = () => {
+    console.log("renderPeriod renders period");
+    return ". ";
+  };
   const reset = () => {
     setState(props);
     // setPrice(props.price);
     // setName(props.name);
   };
 
+  useEffect(() => {
+    console.log("This is like componentDidMount or componentDidUpdate. ");
+    //useEffectはレンダリングの後に実行される
+    //非常に有用なコンポーネント
+    //componentDidMountやcomponentDidUpdateの挙動に似ている
+  });
+  useEffect(() => {
+    console.log("This is like componentDidMount. ");
+    //useEffectはレンダリングの後に実行される
+    //componentdidmountやcomponentdidupdateの
+  }, []);
+  useEffect(() => {
+    console.log("This callback is for name only ");
+    //useEffectはレンダリングの後に実行される
+    //componentdidmountやcomponentdidupdateの
+  }, [name]);
+
+
   return (
     <>
       <p>
-        現在の{name}は{price}です。
+        現在の{name}は{price}です{renderPeriod()}
       </p>
       <button
         onClick={() => {
