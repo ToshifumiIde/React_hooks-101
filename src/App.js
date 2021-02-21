@@ -26,12 +26,15 @@ export const App = () => {
   const setDouble = () => {
     setCount(count * 2);
   };
-  const setMultiple3 = () => {
-    if (count % 3 === 0) {
-      setCount(count / 3);
-    } else {
-      return;
-    }
+  const setDivide3 = () => {
+    setCount((previousCount)=>{
+      if (previousCount % 3 === 0) {
+        return previousCount / 3;
+      } else {
+        return previousCount;
+      }
+
+    })
   };
 
   return (
@@ -64,7 +67,7 @@ export const App = () => {
       <div className="">
         <button onClick={setReset}>Reset</button>
         <button onClick={setDouble}>Double</button>
-        <button onClick={setMultiple3}>/3</button>
+        <button onClick={setDivide3}>/3</button>
       </div>
     </>
   );
