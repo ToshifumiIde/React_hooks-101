@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Event } from "./Event";
 
 export const App = () => {
   const [value, setValue] = useState("");
@@ -40,6 +41,7 @@ export const App = () => {
   return (
     <>
       This is item plate for React App
+      <Event />
       <form onSubmit={handleSubmit}>
         <input
           type="text"
