@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { events } from "../reducers/index";
+import { Event } from "./Event";
 
 export const App = () => {
   const [state, dispatch] = useReducer(events, []);
@@ -67,6 +68,30 @@ export const App = () => {
             <th></th>
           </tr>
         </thead>
+        <tbody>
+          {state.map((event, index) => {
+            // const id = event.id;
+            // const handleClickEventButton = () => {
+            //   dispatch({ type: "DELETE_EVENT", id });
+            // };
+            return (
+              <Event key={index} event={event} dispatch={dispatch}/>
+              // <tr key={index}>
+              //   <td>{id}</td>
+              //   <td>{event.title}</td>
+              //   <td>{event.body}</td>
+              //   <td>
+              //     <button
+              //       className="btn btn-danger"
+              //       onClick={handleClickEventButton}
+              //     >
+              //       削除
+              //     </button>
+              //   </td>
+              // </tr>
+            );
+          })}
+        </tbody>
       </table>
       This is a template for React App
     </div>
