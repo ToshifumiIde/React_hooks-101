@@ -1,8 +1,8 @@
-const action = {
-  type: "CREATE_EVENT",
-  title: "東京オリンピックのお知らせ",
-  body: "2020年に東京でオリンピックを開催します。つきましては…",
-};
+// const action = {
+//   type: "CREATE_EVENT",
+//   title: "東京オリンピックのお知らせ",
+//   body: "2020年に東京でオリンピックを開催します。つきましては…",
+// };
 
 export const events = (state = [], action) => {
   switch (action.type) {
