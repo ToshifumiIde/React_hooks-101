@@ -29,14 +29,13 @@ export const Event = (props) => {
   useEffect(() => {
     console.log("This is like componentDidMount. ");
     //useEffectはレンダリングの後に実行される
-    //componentdidmountやcomponentdidupdateの
+    //componentDidMountやcomponentDidUpdateの
   }, []);
   useEffect(() => {
     console.log("This callback is for name only ");
     //useEffectはレンダリングの後に実行される
-    //componentdidmountやcomponentdidupdateの
+    //componentDidMountやcomponentDidUpdateの
   }, [name]);
-
 
   return (
     <>
