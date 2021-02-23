@@ -2,9 +2,9 @@
 //   type: "CREATE_EVENT",
 //   title: "東京オリンピックのお知らせ",
 //   body: "2020年に東京でオリンピックを開催します。つきましては…",
-// };
+// };//などを作成可能
 
-export const events = (state = [], action) => {
+export const reducer = (state = [], action) => {
   switch (action.type) {
     case "CREATE_EVENT":
       const event = { title: action.title, body: action.body };

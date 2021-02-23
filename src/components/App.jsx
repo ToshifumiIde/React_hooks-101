@@ -1,120 +1,18 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { events } from "../reducers/index";
-import { Event } from "./Event";
+import { EventForm } from "./EventForm";
+import { reducer } from "../reducers/index";
+import { Events } from "./Events";
 
 export const App = () => {
-  const [state, dispatch] = useReducer(events, []);
+  const [state, dispatch] = useReducer(reducer, []);
   //今回の実装では第3引数は不要
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-
-  const addEvent = (e) => {
-    e.preventDefault();
-    console.log("add event");
-    console.log(title, body);
-    dispatch({
-      type: "CREATE_EVENT",
-      title,
-      body,
-    });
-    setTitle("");
-    setBody("");
-  };
-
-  const deleteAllEvents = (e) => {
-    e.preventDefault();
-    const result = window.confirm("本当に全てのイベントを削除しますか？");
-    if (result) {
-      dispatch({
-        type: "DELETE_ALL_EVENTS",
-      });
-    }
-  };
-  console.log(state);
-
-  const unCreatable = title === "" || body === "";
-  // const
   return (
-    <div className="container-fluid">
-      <h4>イベント作成フォーム</h4>
-      <form action="">
-        <div className="form-group">
-          <label htmlFor="formEventTitle">タイトル</label>
-          <input
-            autoFocus
-            type="text"
-            className="form-control"
-            id="formEventTitle"
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="formEventBody">ボディ</label>
-          <textarea
-            type="text"
-            className="form-control"
-            id="formEventBody"
-            value={body}
-            onChange={(e) => {
-              setBody(e.target.value);
-            }}
-          />
-        </div>
-        <button
-          className="btn btn-primary"
-          disabled={unCreatable}
-          onClick={addEvent}
-        >
-          イベントを作成する
-        </button>
-        <button
-          className="btn btn-danger"
-          disabled={state.length === 0}
-          onClick={deleteAllEvents}
-        >
-          全てのイベントを削除する
-        </button>
-      </form>
-      <h4>イベント一覧</h4>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>タイトル</th>
-            <th>ボディ</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {state.map((event, index) => {
-            // const id = event.id;
-            // const handleClickEventButton = () => {
-            //   dispatch({ type: "DELETE_EVENT", id });
-            // };
-            return (
-              <Event key={index} event={event} dispatch={dispatch} />
-              // <tr key={index}>
-              //   <td>{id}</td>
-              //   <td>{event.title}</td>
-              //   <td>{event.body}</td>
-              //   <td>
-              //     <button
-              //       className="btn btn-danger"
-              //       onClick={handleClickEventButton}
-              //     >
-              //       削除
-              //     </button>
-              //   </td>
-              // </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      This is a template for React App
-    </div>
+    <>
+      <div className="container-fluid">
+        <EventForm state={state} dispatch={dispatch} />
+        <Events state={state} dispatch={dispatch} />
+      </div>
+    </>
   );
 };
