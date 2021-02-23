@@ -22,8 +22,19 @@ export const App = () => {
     setBody("");
   };
 
+  const deleteAllEvents = (e) => {
+    e.preventDefault();
+    const result = window.confirm("本当に全てのイベントを削除しますか？");
+    if (result) {
+      dispatch({
+        type: "DELETE_ALL_EVENTS",
+      });
+    }
+  };
   console.log(state);
 
+  const unCreatable = title === "" || body === "";
+  // const
   return (
     <div className="container-fluid">
       <h4>イベント作成フォーム</h4>
@@ -53,10 +64,20 @@ export const App = () => {
             }}
           />
         </div>
-        <button className="btn btn-primary" onClick={addEvent}>
+        <button
+          className="btn btn-primary"
+          disabled={unCreatable}
+          onClick={addEvent}
+        >
           イベントを作成する
         </button>
-        <button className="btn btn-danger">全てのイベントを削除する</button>
+        <button
+          className="btn btn-danger"
+          disabled={state.length === 0}
+          onClick={deleteAllEvents}
+        >
+          全てのイベントを削除する
+        </button>
       </form>
       <h4>イベント一覧</h4>
       <table className="table table-hover">
@@ -75,7 +96,7 @@ export const App = () => {
             //   dispatch({ type: "DELETE_EVENT", id });
             // };
             return (
-              <Event key={index} event={event} dispatch={dispatch}/>
+              <Event key={index} event={event} dispatch={dispatch} />
               // <tr key={index}>
               //   <td>{id}</td>
               //   <td>{event.title}</td>

@@ -1,11 +1,12 @@
-import React, { useReducer } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { events } from "../reducers/index";
+import React from "react";
 
 export const Event = ({ event, dispatch }) => {
   const id = event.id;
   const handleClickEventButton = () => {
-    dispatch({ type: "DELETE_EVENT", id });
+    const result = window.confirm(`本当にid:${id}のイベントを削除してもよろしいですか？`);
+    if(result){
+      dispatch({ type: "DELETE_EVENT", id });
+    }
   };
   return (
     <tr>
