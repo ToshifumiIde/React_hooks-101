@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { EventForm } from "./EventForm";
-import { reducer } from "../reducers/index";
+import { reducer } from "../reducers";
 import { Events } from "./Events";
 
 export const App = () => {
