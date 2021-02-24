@@ -3,10 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { EventForm } from "./EventForm";
 import AppContext from "../contexts/AppContext";
 import { Events } from "./Events";
-import { reducer } from "../reducers";
+import { events } from "../events";
 
 export const App = () => {
-  const [state, dispatch] = useReducer(reducer, []);
+  const initialState ={
+    events:[]
+  }
+  const [state, dispatch] = useReducer(events, initialState);
   //今回の実装では第3引数は不要
   return (
     <>
