@@ -4,7 +4,6 @@ import AppContext from "../contexts/AppContext";
 
 export const EventForm = () => {
   const { state, dispatch } = useContext(AppContext);
-  // console.log(value)
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
