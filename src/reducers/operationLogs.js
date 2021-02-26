@@ -7,7 +7,8 @@ export const operationLogs = (state = [], action) => {
         description: action.description,
         operatedAt: action.operatedAt,
       };
-      return state;
+      return [operationLog, ...state];
+    //新たに作成されたoperationLogを配列の先頭に格納し、stateを展開して格納すれば、追加されたオブジェクトが常に先頭にくる。
     case DELETE_ALL_OPERATION_LOGS:
       return [];
     default:

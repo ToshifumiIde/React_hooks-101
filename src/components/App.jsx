@@ -8,6 +8,7 @@ import reducer from "../reducers";
 export const App = () => {
   const initialState = {
     events: [],
+    operationLogs: [],
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   //今回の実装では第3引数は不要
