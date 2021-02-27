@@ -39,9 +39,22 @@ export const EventForm = () => {
         type: DELETE_ALL_EVENTS,
       });
       dispatch({
-        type: ADD_OPERATION_LOG, //操作ログとしては追加作業となるためADDの方
+        type: ADD_OPERATION_LOG,
+        //操作ログとしては「追加作業」となるためADD_OPERATION_LOGの方をtypeに追加
         description: "全てのログを削除しました",
         operatedAt: timeCurrentIso8601(),
+      });
+    }
+  };
+
+  const deleteAllOperationLogs = (e) => {
+    e.preventDefault();
+    const result = window.confirm(
+      "全ての操作ログを本当に削除しても良いですか？"
+    );
+    if (result) {
+      dispatch({
+        type: DELETE_ALL_OPERATION_LOGS,
       });
     }
   };
@@ -90,6 +103,13 @@ export const EventForm = () => {
           onClick={deleteAllEvents}
         >
           全てのイベントを削除する
+        </button>
+        <button
+          className="btn btn-danger"
+          disabled={state.operationLogs.length === 0}
+          onClick={deleteAllOperationLogs}
+        >
+          全ての操作ログを削除する
         </button>
       </form>
     </>
