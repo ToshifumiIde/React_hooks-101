@@ -4,7 +4,7 @@ import { CREATE_EVENT, DELETE_EVENT, DELETE_ALL_EVENTS } from "../actions";
 //   type: "CREATE_EVENT",
 //   title: "東京オリンピックのお知らせ",
 //   body: "2020年に東京でオリンピックを開催します。つきましては…",
-// };//などを作成可能
+// };//などを作成可能。各コンポーネントからdispatch({})で渡ってくる
 
 export const events = (state = [], action) => {
   switch (action.type) {
@@ -19,6 +19,7 @@ export const events = (state = [], action) => {
     //stateの配列に対しfilterメソッドを使用。state内の各eventに対し、event.idがaction.idに合致しないものを再配列する。
     case DELETE_ALL_EVENTS:
       return [];
+      //イベント全部を消すから、返却されるのは空配列
     default:
       return state;
   }

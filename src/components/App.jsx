@@ -10,7 +10,7 @@ const APP_KEY = "appWithRedux";
 
 export const App = () => {
   const appState = localStorage.getItem(APP_KEY);
-  //下記のuseEffect()のタイミングでlocalStorageに格納した"appWithRedux"という名称のstringを呼び出してappStateに格納する
+  //下記のuseEffect()のタイミングで、localStorageプロパティの.setItem()メソッドにて格納した"appWithRedux"という名称のstringを呼び出して、定数appStateに格納する
   const initialState = appState
     ? JSON.parse(appState) //.parse()にて文字列で格納されていたappStateを「JSON形式」に戻している。これでプロパティにアクセスできる。
     : {
@@ -23,11 +23,10 @@ export const App = () => {
   //Appコンポーネントで状態の変更を検知して、更新に応じてlocalStateに変更を格納する機能が欲しい=>useEffectを使用
   useEffect(() => {
     const string = JSON.stringify(state);
-    //引数に渡されたJSオブジェクトや値をJSON「文字列」に変換する
-
+    //引数に渡されたJSオブジェクトや値を、JSON形式の「文字列」に変換する
     localStorage.setItem(APP_KEY, string);
-    //JSON文字列に変換したstringを"appWithRedux"という名称でlocalStorageに格納する
-    console.log({ string });
+    //JSON文字列に変換したstringをlocalStorageに、"appWithRedux"という名称で.setItem()メソッドを用いて格納する
+    // console.log({ string });
   }, [state]);
 
   return (

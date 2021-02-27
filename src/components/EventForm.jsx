@@ -21,26 +21,28 @@ export const EventForm = () => {
       title,
       body,
     });
-    //時間の情報をdispatchする
+    //ログ情報をdispatchする（時間情報など）
     dispatch({
       type: ADD_OPERATION_LOG,
       description: "イベントを作成しました",
       operatedAt: timeCurrentIso8601(),
     });
-    setTitle("");
-    setBody("");
+    setTitle("");//タイトルを空にする
+    setBody("");//イベントの中身を空にする
   };
 
   const deleteAllEvents = (e) => {
     e.preventDefault();
     const result = window.confirm("本当に全てのイベントを削除しますか？");
     if (result) {
+      //イベント情報（オブジェクト）をdispatchする
       dispatch({
         type: DELETE_ALL_EVENTS,
       });
+      //ログ情報（オブジェクト）をdispatchする
       dispatch({
         type: ADD_OPERATION_LOG,
-        //操作ログとしては「追加作業」となるためADD_OPERATION_LOGの方をtypeに追加
+        //操作ログとしては「追加作業」となるため、ADD_OPERATION_LOGの方をtypeに追加
         description: "全てのイベントを削除しました",
         operatedAt: timeCurrentIso8601(),
       });
@@ -53,6 +55,7 @@ export const EventForm = () => {
       "全ての操作ログを本当に削除しても良いですか？"
     );
     if (result) {
+      //ログ情報をdispatchする
       dispatch({
         type: DELETE_ALL_OPERATION_LOGS,
       });

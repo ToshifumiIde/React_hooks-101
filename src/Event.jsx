@@ -30,11 +30,13 @@ export const Event = (props) => {
     console.log("This is like componentDidMount. ");
     //useEffectはレンダリングの後に実行される
     //componentDidMountやcomponentDidUpdateの
+    //第二引数に空配列を格納することで、初回のみrenderされる
   }, []);
   useEffect(() => {
     console.log("This callback is for name only ");
     //useEffectはレンダリングの後に実行される
     //componentDidMountやcomponentDidUpdateの
+    //第二引数に[name]を格納することで、nameが変更する度に再renderが実行される
   }, [name]);
 
   return (

@@ -11,11 +11,13 @@ export const Event = ({ event }) => {
       `本当にid:${id}のイベントを削除してもよろしいですか？`
     );
     if (result) {
+      //削除時のactionをdispatchする
       dispatch({
         type: ADD_OPERATION_LOG,
         description: `イベント(id=${id})を削除しました`,
         operatedAt: timeCurrentIso8601(),
       });
+      //イベントログの更新情報をdispatchする
       dispatch({ type: DELETE_EVENT, id });
     }
   };
