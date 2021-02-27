@@ -20,7 +20,6 @@ export const OperationLogs = () => {
           })}
         </tbody>
       </table>
-      OperationLogs
     </>
   );
 };
