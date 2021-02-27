@@ -1,6 +1,12 @@
 import React, { useState, useContext } from "react";
-import { CREATE_EVENT, DELETE_ALL_EVENTS } from "../actions";
+import {
+  CREATE_EVENT,
+  DELETE_ALL_EVENTS,
+  ADD_OPERATION_LOG,
+  DELETE_ALL_OPERATION_LOGS,
+} from "../actions";
 import AppContext from "../contexts/AppContext";
+import { timeCurrentIso8601 } from "../utils";
 
 export const EventForm = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -9,10 +15,17 @@ export const EventForm = () => {
 
   const addEvent = (e) => {
     e.preventDefault();
+    //CREATE_EVENTの情報をdispatchする
     dispatch({
       type: CREATE_EVENT,
       title,
       body,
+    });
+    //時間の情報をdispatchする
+    dispatch({
+      type: ADD_OPERATION_LOG,
+      description: "イベントを作成しました",
+      operatedAt: timeCurrentIso8601(),
     });
     setTitle("");
     setBody("");
@@ -24,6 +37,11 @@ export const EventForm = () => {
     if (result) {
       dispatch({
         type: DELETE_ALL_EVENTS,
+      });
+      dispatch({
+        type: ADD_OPERATION_LOG, //操作ログとしては追加作業となるためADDの方
+        description: "全てのログを削除しました",
+        operatedAt: timeCurrentIso8601(),
       });
     }
   };
