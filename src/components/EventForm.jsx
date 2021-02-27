@@ -41,7 +41,7 @@ export const EventForm = () => {
       dispatch({
         type: ADD_OPERATION_LOG,
         //操作ログとしては「追加作業」となるためADD_OPERATION_LOGの方をtypeに追加
-        description: "全てのログを削除しました",
+        description: "全てのイベントを削除しました",
         operatedAt: timeCurrentIso8601(),
       });
     }
