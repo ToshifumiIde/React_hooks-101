@@ -19,7 +19,7 @@ export const events = (state = [], action) => {
     //stateの配列に対しfilterメソッドを使用。state内の各eventに対し、event.idがaction.idに合致しないものを再配列する。
     case DELETE_ALL_EVENTS:
       return [];
-      //イベント全部を消すから、返却されるのは空配列
+    //イベント全部を消すから、返却されるのは空配列
     default:
       return state;
   }
